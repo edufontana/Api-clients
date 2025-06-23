@@ -19,4 +19,5 @@ export interface ClientRepository {
   findByName(name: string): Promise<createServiceTypes[] | null>;
   update(id: string, data: Partial<createServiceTypes>): Promise<createServiceTypes>;
   findAll(): Promise<createServiceTypes[]>;
+  findWithSalesByName(name?: string): Promise<any[]>;
 }

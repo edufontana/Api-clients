@@ -75,4 +75,22 @@ export class PrismaClients implements ClientRepository {
     const clients = await prisma.clients.findMany();
     return clients;
   }
+
+  async findWithSalesByName(name?: string) {
+    return await prisma.clients.findMany({
+      where: name ? { name: { contains: name } } : {},
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        birth: true,
+        Sales: {
+          select: {
+            date: true,
+            value: true,
+          },
+        },
+      },
+    });
+  }
 }

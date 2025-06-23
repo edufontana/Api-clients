@@ -12,4 +12,12 @@ export class ListClientByNameService {
     const clients = await this.clientsRepo.findAll();
     return clients;
   }
+}
+
+export class ListClientWithSalesService {
+  constructor(private clientsRepo: ClientRepository) {}
+
+  async execute(name?: string) {
+    return this.clientsRepo.findWithSalesByName(name);
+  }
 } 
